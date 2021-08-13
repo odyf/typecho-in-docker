@@ -14,6 +14,8 @@ RUN apt-get update && \
     libfreetype6-dev \
     libzip-dev
 
+RUN git clone git@github.com:typecho/typecho.git /data/wwwroot/typecho 
+
 RUN docker-php-ext-configure gd \
     --with-jpeg \
     --with-freetype
@@ -26,8 +28,6 @@ RUN pecl install redis \
     && docker-php-ext-install zip \
     && docker-php-ext-install gd \
     && docker-php-ext-enable redis
-
-RUN git clone https://github.com/typecho/typecho.git /data/wwwroot/typecho \
 
 RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo 'Asia/Shanghai' >/etc/timezone
